@@ -1233,7 +1233,10 @@ This module contains two public hashes:
 
 =item B<%INTEGER_TO_SYMBOL>
 
-Map from an integer value to a status string (e.g. 0xC0000005 => 'STATUS_ACCESS_VIOLATION')
+Map from an integer value to a status string (e.g. 0xC0000005 => 'STATUS_ACCESS_VIOLATION').
+
+Note that a few integers have multiple associated symbols.  In that case, the returned string
+is the string arbitrarily chosen as the most relevant.
 
 =item B<%SYMBOL_TO_INTEGER>
 
@@ -1251,6 +1254,14 @@ On request, the module will also directly export any named status constants:
   elsif ($process->exitcode() == STATUS_INTEGER_OVERFLOW) {
     warn "Process died due to integer overflow!";
   }
+
+=head1 CAVEATS
+
+Be aware that, at time of writing, perl on Windows will always truncate 32-bit Windows exit codes
+into 16 bits before storing in $? and ${^CHILD_ERROR_NATIVE}.  Therefore, this module can't be
+used with the return values of the builtin L<system()>, L<waitpid()> or similar functions.
+
+Native Windows APIs for managing processes, such as L<Win32::Process>, don't have this problem.
 
 =head1 AUTHOR
 
