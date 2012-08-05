@@ -11,3 +11,4 @@ cover_db
 pod2htm*.tmp
 Win32-Status-*
 MYMETA.yml
+MYMETA.json
