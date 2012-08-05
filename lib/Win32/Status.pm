@@ -7,7 +7,7 @@ use Carp;
 use Readonly;
 use base 'Exporter';
 
-our $VERSION = '0.80';
+our $VERSION = '0.81';
 
 Readonly our %INTEGER_TO_SYMBOL => (
     0x00000000 => 'STATUS_SUCCESS',
