@@ -4,6 +4,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
+    (MM->can('signature_target') ? (SIGN => 1) : ()),
     NAME                => 'Win32::Status',
     AUTHOR              => q{Rohan McGovern <rohan@mcgovern.id.au>},
     VERSION_FROM        => 'lib/Win32/Status.pm',
